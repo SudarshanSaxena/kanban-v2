@@ -32,7 +32,7 @@ export class ColumnsService {
 
   }
 
-  async createNewColumn(name: string) {
-    const newBoard = await this.supabaseClient.from(this.tableName).insert([{ 'name': name }])
+  async createNewColumn(boardId: number,name: string) {
+    const newBoard = await this.supabaseClient.from(this.tableName).insert([{ 'name': name,'board_id':boardId }])
   }
 }

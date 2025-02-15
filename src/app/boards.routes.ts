@@ -7,6 +7,8 @@ import { CreateUpdateBoardComponent } from './create-update-board.component';
 export const BOARD_ROUTES: Routes = [
   { path: '', component: BoardsViewComponent },
   { path: 'create', component: CreateUpdateBoardComponent },
+  { path: ':boardId/column/create', component: CreateUpdateBoardComponent },
   { path: ':boardId', component: BoardComponent },
-  { path: ':boardId/task/:taskId', component: TaskComponent }
+  { path: ':boardId/task/:taskId', component: TaskComponent },
+  { path: ':boardId/:columnId/create', component: TaskComponent }
 ];

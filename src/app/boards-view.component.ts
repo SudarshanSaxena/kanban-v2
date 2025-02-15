@@ -20,8 +20,8 @@ export class BoardsViewComponent implements OnInit {
     this.boards = boards
   }
 
-  openBoard(boardId: number) {
-    this.router.navigate(['/boards', boardId]);
+  openBoard(boardId: number,boardName:string) {
+    this.router.navigate(['/boards', boardId],{state:{boardName: boardName}});
   }
 
   navigateToCreateBoard() {

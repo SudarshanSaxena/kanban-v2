@@ -1,6 +1,10 @@
+<div class="create-column-btn" (click)="navigateToCreteNewColumn()">
+  Create a new Column
+</div>
+
 <div class="board">
   <div class="board-bar">
-    <p class="board-name">Board Name</p>
+    <p class="board-name">{{boardName}}</p>
   </div>
 
   <div class="board-wrapper">
@@ -11,8 +15,9 @@
         <div class="column-title">
           {{column.name}}
         </div>
+        <div class="add-task" (click)="addTaskToColumn(column.id)">Add Task</div>
         @for (task of column.tasks; track task) {
-        <div class="task" cdkDrag [cdkDragData]="task">{{task.name}}</div>
+        <div class="task" cdkDrag [cdkDragData]="task" (click)="openTask(task.id)">{{task.name}}</div>
         }
       </div>
       }

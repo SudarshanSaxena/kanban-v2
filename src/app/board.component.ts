@@ -10,37 +10,37 @@ import { TasksService } from './services/tasks.service';
 
 @Component({
   selector: 'app-board',
-  imports: [CommonModule,DragDropModule],
+  imports: [CommonModule, DragDropModule],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss'
 })
-export class BoardComponent implements OnInit{
+export class BoardComponent implements OnInit {
   boardId!: number;
   columns: any[] = []
+  boardName!: string;
   @ViewChildren(CdkDropList) dropListRefs!: QueryList<CdkDropList>;
   dropLists: string[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private columnsService: ColumnsService,private tasksService: TasksService) {
+  constructor(private route: ActivatedRoute, private router: Router, private columnsService: ColumnsService, private tasksService: TasksService) {
     this.route.params.subscribe(params => {
       this.boardId = params['boardId'];
     });
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation?.extras.state) {
+      this.boardName = navigation?.extras?.state['boardName']
+    }
   }
-  
-  
+
+
   ngOnInit() {
     this.loadColumns();
   }
-  
+
   async loadColumns() {
     this.columns = await this.columnsService.getColumns(this.boardId);
     this.dropLists = this.columns.map((column) => `${column.id}`);
   }
-  
 
-  // ngAfterViewInit() {
-  //   // Collect all drop lists after view initialization
-  //   this.dropLists = this.dropListRefs.toArray();
-  // }
 
   openTask(taskId: number) {
     this.router.navigate(['/boards', this.boardId, 'task', taskId]);
@@ -57,7 +57,15 @@ export class BoardComponent implements OnInit{
         event.previousIndex,
         event.currentIndex,
       );
-      await this.tasksService.moveTaskToColumn(event.item.data.id,+event.container.id)
+      await this.tasksService.moveTaskToColumn(event.item.data.id, +event.container.id)
     }
+  }
+
+  addTaskToColumn(columnId: number){
+    this.router.navigate(['/boards',this.boardId,columnId,'create'])
+  }
+
+  navigateToCreteNewColumn(){
+    this.router.navigate(['/boards',this.boardId,'column','create'])
   }
 }

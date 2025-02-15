@@ -1,7 +1,18 @@
 <div class="form-container">
   <div class="form">
-    <input type="text" [(ngModel)]="boardName" placeholder="Enter board name" />
-    <button class="create-btn" (click)="createBoard()">Create</button>
+    @if (isCreateBoard) {
+      <input type="text" [(ngModel)]="boardName" placeholder="Enter board name" />
+    }
+    @if (isCreateColumn) {
+      <input type="text" [(ngModel)]="columnName" placeholder="Enter column name" />
+    }
+    @if (isCreateBoard) {
+      <button class="create-btn" (click)="createBoard()">Create</button>
+    }
+    @if (isCreateColumn) {
+      <button class="create-btn" (click)="createColumn()">Create</button>
+      
+    }
     <button class="cancel-btn" (click)="cancel()">Cancel</button>
   </div>
 </div>

@@ -1,2 +1,16 @@
-<h2>Task {{ taskId }} in Board {{ boardId }}</h2>
-    <p>Task details will go here.</p>
+<div class="form-container">
+  <div class="form">
+    <input type="text" [(ngModel)]="taskName" placeholder="Enter task name" />
+    <textarea type="text"  [(ngModel)]="taskDescription" placeholder="Enter task description"></textarea>
+    @if (!isCreateMode) {
+      <button class="create-btn" (click)="updateTask()">Update</button>
+    }
+    @if (isCreateMode) {
+      <button class="create-btn" (click)="addTaskToColumn()">Add</button>
+    }
+    <button class="cancel-btn" (click)="cancel()">Cancel</button>
+    @if (!isCreateMode) {
+      <button class="cancel-btn" (click)="deleteTask()">Delete</button>
+    }
+  </div>
+</div>

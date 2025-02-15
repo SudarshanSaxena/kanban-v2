@@ -5,7 +5,7 @@
 <div>
   <div class="container">
     @for (board of boards; track $index) {
-      <div class="card" (click)="openBoard(board.id)">
+      <div class="card" (click)="openBoard(board.id,board.name)">
         <div class="card-title">
           {{ board.name }}
         </div>
