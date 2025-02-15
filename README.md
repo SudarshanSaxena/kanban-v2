@@ -20,9 +20,13 @@ The current version is deployed on AWS cloudfront and is linked to my personal d
 
 ## Functional implementation
 Fetch and display todos from the API. ✅
+
 Create a new todo. ✅
+
 Update a todo (edit title, description, etc.). ✅
+
 Change the status of a todo (move between lanes). ✅
+
 Delete a todo. ✅
 
 ## Additional Features
@@ -37,4 +41,5 @@ Simple but clean UI/UX (minimal styling required, but it should be visually
 understandable). ✅
 
 
-
+# Decisions
+The overall architecture is very simple
