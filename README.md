@@ -4,6 +4,8 @@
 
 # Yes, I deployed it on my own domain 💪🏻
 
+## Since I'm using supabase, I'll delete the supabase project after 23rd Feb 2025 to avoid any additional charges.
+
 ## Development server
 
 To start a local development server, run:
