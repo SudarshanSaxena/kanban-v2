@@ -1,6 +1,4 @@
-# KanbanV2
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+# Kanban Board by Sudarshan Saxena
 
 ## Development server
 
@@ -12,48 +10,31 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Checklist covered
+Use Dummy API: Fetch and update todos using DummyJSON Todos API. ❌
+Instead of using a dummy api, I created my own database and APIs using Supabase ✅
+I did this as to enhance my web portfolio 🚀
+The current version is deployed on AWS cloudfront and is linked to my personal domain 
+# `https://kanban.sudosuper.com`
 
-```bash
-ng generate component component-name
-```
+## Functional implementation
+Fetch and display todos from the API. ✅
+Create a new todo. ✅
+Update a todo (edit title, description, etc.). ✅
+Change the status of a todo (move between lanes). ✅
+Delete a todo. ✅
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Additional Features
+Create a new Board 🚀
+Create new columns inside the board 🚀
 
-```bash
-ng generate --help
-```
 
-## Building
+## UI requirements - Objective (looks good to me 😜)
+Use a Kanban-style board with vertical lanes for different statuses (e.g.,"Pending", "In Progress", "Completed"). ✅
+Allow users to drag and drop todos between lanes to update their status. ✅
+Simple but clean UI/UX (minimal styling required, but it should be visually
+understandable). ✅
 
-To build the project run:
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
