@@ -17,8 +17,11 @@ Once the server is running, open your browser and navigate to `http://localhost:
 
 ## Checklist covered
 Use Dummy API: Fetch and update todos using DummyJSON Todos API. ❌
+
 Instead of using a dummy api, I created my own database and APIs using Supabase ✅
+
 I did this as to enhance my web portfolio 🚀
+
 The current version is deployed on AWS cloudfront and is linked to my personal domain 
 
 
