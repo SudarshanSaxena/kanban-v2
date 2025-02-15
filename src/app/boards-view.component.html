@@ -1,0 +1,16 @@
+<div class="create-board-btn" (click)="navigateToCreateBoard()">
+  Create a new Board
+</div>
+
+<div>
+  <div class="container">
+    @for (board of boards; track $index) {
+      <div class="card" (click)="openBoard(board.id)">
+        <div class="card-title">
+          {{ board.name }}
+        </div>
+      </div>
+    }
+  </div>
+</div>
+

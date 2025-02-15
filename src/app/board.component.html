@@ -1,0 +1,21 @@
+<div class="board">
+  <div class="board-bar">
+    <p class="board-name">Board Name</p>
+  </div>
+
+  <div class="board-wrapper">
+    <div class="board-columns">
+      @for (column of columns; track $index) {
+      <div class="board-column" [id]="column.id.toString()" cdkDropList #todoList="cdkDropList" [cdkDropListData]="column.tasks"
+        [cdkDropListConnectedTo]="dropLists" (cdkDropListDropped)="drop($event)">
+        <div class="column-title">
+          {{column.name}}
+        </div>
+        @for (task of column.tasks; track task) {
+        <div class="task" cdkDrag [cdkDragData]="task">{{task.name}}</div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

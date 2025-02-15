@@ -1,8 +1,19 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, Routes } from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
-import { routes } from './app.routes';
+const routes: Routes = [
+  { path: '', redirectTo: 'boards', pathMatch: 'full' },
+  { 
+    path: 'boards', 
+    loadChildren: () => import('./boards.routes').then(m => m.BOARD_ROUTES) 
+  }
+];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [
+    provideRouter(routes),
+    provideAnimations()
+  ]
 };

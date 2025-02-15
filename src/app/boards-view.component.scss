@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+.card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 200px; // Ensures a minimum height
+  max-height: 350px; // Prevents excessive stretching
+  min-width: 250px; // Prevents shrinking too much
+  max-width: 400px; // Limits maximum card width
+  flex: 1 1 calc(100% - 32px); // Default: full width on small screens
+
+  @media (min-width: 600px) { // Medium screen: 2 cards per row
+    flex: 1 1 calc(50% - 32px);
+  }
+
+  @media (min-width: 1024px) { // Large screen: 3 cards per row
+    flex: 1 1 calc(33.33% - 32px);
+  }
+}
+
+.card-title{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-weight: bold;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.create-board-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: white;
+  font-family:Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
