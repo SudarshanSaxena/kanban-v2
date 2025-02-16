@@ -5,23 +5,25 @@ import { Board } from '../models/board.model';
 
 @Component({
   selector: 'app-boards-view',
-  imports: [],
   templateUrl: './boards-view.component.html',
-  styleUrl: './boards-view.component.scss'
+  styleUrls: ['./boards-view.component.scss'], // Fixed 'styleUrl' to 'styleUrls'
 })
 export class BoardsViewComponent implements OnInit {
-  boards: Board[] = []
+  boards: Board[] = [];
 
-  constructor(private router: Router,private boardsService: BoardsService) {}
+  constructor(private router: Router, private boardsService: BoardsService) {}
 
   async ngOnInit() {
-    const boards = await this.boardsService.getBoards()
-    // this.boards = boards
-    this.boards = boards
+    try {
+      this.boards = await this.boardsService.getBoards();
+    } catch (error) {
+      console.error('Error fetching boards:', error);
+      // Handle error (e.g., show a message to the user)
+    }
   }
 
-  openBoard(boardId: number,boardName:string) {
-    this.router.navigate(['/boards', boardId],{state:{boardName: boardName}});
+  openBoard(boardId: number, boardName: string) {
+    this.router.navigate(['/boards', boardId], { state: { boardName } });
   }
 
   navigateToCreateBoard() {
