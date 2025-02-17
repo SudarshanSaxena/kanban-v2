@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18  # Use an appropriate Node.js version
+    commands:
+      - echo Installing dependencies...
+      - npm install -g @angular/cli
+      - npm install
+
+  build:
+    commands:
+      - echo Building the Angular project...
+      - ng build --configuration=production  # Adjust config as needed
+
+  post_build:
+    commands:
+      - echo Syncing build artifacts to S3...
+      - aws s3 sync dist/kanban-v2/browser s3://kanban.sudosuper.com --recursive --acl public-read
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist/*
+  discard-paths: no
