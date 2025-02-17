@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { SupabaseService } from './supabase.service';
 import { Column } from '../../models/column.model';
+import { Task } from '../../models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class ColumnsService {
         throw new Error('Failed to fetch columns. Please try again later.');
       }
 
-      return data?.map((column: any) => new Column(column.id, column.name, column.tasks || [])) || [];
+      return data?.map((column: any) => new Column(column.id, column.name, column.tasks.map((task:any)=>new Task(task.id,task.name,task.description,task.current_index)) || [])) || [];
     } catch (err) {
       console.error('Unexpected error in getColumns:', err);
       throw new Error('An unexpected error occurred while fetching columns.');

@@ -14,11 +14,11 @@ export class TasksService {
     this.supabaseClient = this.supabaseService.getClient();
   }
 
-  async moveTaskToColumn(taskId: number, columnId: number): Promise<void> {
+  async moveTaskToColumn(taskId: number, columnId: number,currentIndex:number): Promise<void> {
     try {
       const { error } = await this.supabaseClient
         .from(this.tableName)
-        .update({ column_id: columnId })
+        .update({ column_id: columnId, current_index: currentIndex})
         .eq('id', taskId);
 
       if (error) {

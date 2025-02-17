@@ -5,6 +5,7 @@ import { CdkDragDrop, CdkDropList, DragDropModule, moveItemInArray, transferArra
 import { Task } from '../models/task.model';
 import { CommonModule } from '@angular/common';
 import { TasksService } from './services/tasks.service';
+import { Column } from '../models/column.model';
 
 @Component({
   selector: 'app-board',
@@ -15,7 +16,7 @@ import { TasksService } from './services/tasks.service';
 })
 export class BoardComponent implements OnInit {
   boardId!: number;
-  columns: any[] = [];
+  columns: Column[] = [];
   boardName: string = ''; // Initialized to avoid undefined
   @ViewChildren(CdkDropList) dropListRefs!: QueryList<CdkDropList>;
   dropLists: string[] = [];
@@ -43,6 +44,9 @@ export class BoardComponent implements OnInit {
   async loadColumns() {
     try {
       this.columns = await this.columnsService.getColumns(this.boardId);
+      this.columns.forEach((column: Column)=>
+        column.tasks.sort((a:Task,b:Task)=>a.currentIndex-b.currentIndex)
+      )
       if (!this.columns.length) {
         console.warn(`No columns found for board ID: ${this.boardId}`);
       }
@@ -60,6 +64,7 @@ export class BoardComponent implements OnInit {
     try {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+        await this.tasksService.moveTaskToColumn(event.item.data.id, +event.container.id,event.currentIndex);
       } else {
         transferArrayItem(
           event.previousContainer.data,
@@ -67,7 +72,7 @@ export class BoardComponent implements OnInit {
           event.previousIndex,
           event.currentIndex
         );
-        await this.tasksService.moveTaskToColumn(event.item.data.id, +event.container.id);
+        await this.tasksService.moveTaskToColumn(event.item.data.id, +event.container.id,event.currentIndex);
       }
     } catch (error) {
       console.error('Error moving task:', error);
